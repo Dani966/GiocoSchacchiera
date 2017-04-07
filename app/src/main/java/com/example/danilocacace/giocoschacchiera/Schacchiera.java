@@ -33,7 +33,36 @@ public class Schacchiera extends View {
         //Adesso devo colorarmi le caselle, in particolare devo distinguere due casi, uno per l'inizializzazione, ovvero la
         //Prima colorazione della scacchiera che servirà anche a far ripartire il gioco, mentre un ulteriore metodo servirà a
         //colorarla durante la fase di gioco all'inversione dei colori
+        if(start==false){
+            for(int i =0; i<=dimensione; i++){
+                if(i%2==0){
+                    for(int j=0; j<=dimensione; j++){
+                        if(j%2 == 0){
+                            paint.setColor(Color.YELLOW);
+                            Rect r = new Rect(sfondo.left+j*larghezzaCasella, sfondo.top+i*altezzaCasella, sfondo.left+(j+1)*larghezzaCasella, sfondo.top+(i+1)*altezzaCasella);
+                        }
+                        if (j%2 != 0) {
+                            paint.setColor(Color.BLACK);
+                            Rect r = new Rect(sfondo.left+j*larghezzaCasella, sfondo.top+i*altezzaCasella, sfondo.left+(j+1)*larghezzaCasella, sfondo.top+(i+1)*altezzaCasella);
+                        }
 
+                     }
+                }
+                if(i%2 != 0){
+                    for(int j=0; j<=dimensione; j++){
+                        if(j%2 == 0){
+                            paint.setColor(Color.BLACK);
+                            Rect r = new Rect(sfondo.left+j*larghezzaCasella, sfondo.top+i*altezzaCasella, sfondo.left+(j+1)*larghezzaCasella, sfondo.top+(i+1)*altezzaCasella);
+                        }
+                        if (j%2 != 0) {
+                            paint.setColor(Color.YELLOW);
+                            Rect r = new Rect(sfondo.left+j*larghezzaCasella, sfondo.top+i*altezzaCasella, sfondo.left+(j+1)*larghezzaCasella, sfondo.top+(i+1)*altezzaCasella);
+                        }
+
+                    }
+                }
+            }
+        }
 
     }
 }
