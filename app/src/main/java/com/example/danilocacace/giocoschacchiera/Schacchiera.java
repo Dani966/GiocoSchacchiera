@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.util.AttributeSet;
 import android.view.View;
 
 /**
@@ -19,6 +20,7 @@ public class Schacchiera extends View {
     public Schacchiera(Context context) {
         super(context);
     }
+    public Schacchiera(Context context, AttributeSet attributeSet){super (context, attributeSet);}
 
     Paint paint = new Paint();
 
@@ -40,10 +42,12 @@ public class Schacchiera extends View {
                         if(j%2 == 0){
                             paint.setColor(Color.YELLOW);
                             Rect r = new Rect(sfondo.left+j*larghezzaCasella, sfondo.top+i*altezzaCasella, sfondo.left+(j+1)*larghezzaCasella, sfondo.top+(i+1)*altezzaCasella);
+                            canvas.drawRect(r, paint);
                         }
                         if (j%2 != 0) {
                             paint.setColor(Color.BLACK);
                             Rect r = new Rect(sfondo.left+j*larghezzaCasella, sfondo.top+i*altezzaCasella, sfondo.left+(j+1)*larghezzaCasella, sfondo.top+(i+1)*altezzaCasella);
+                            canvas.drawRect(r,paint);
                         }
 
                      }
@@ -53,17 +57,24 @@ public class Schacchiera extends View {
                         if(j%2 == 0){
                             paint.setColor(Color.BLACK);
                             Rect r = new Rect(sfondo.left+j*larghezzaCasella, sfondo.top+i*altezzaCasella, sfondo.left+(j+1)*larghezzaCasella, sfondo.top+(i+1)*altezzaCasella);
+                            canvas.drawRect(r, paint);
                         }
                         if (j%2 != 0) {
                             paint.setColor(Color.YELLOW);
                             Rect r = new Rect(sfondo.left+j*larghezzaCasella, sfondo.top+i*altezzaCasella, sfondo.left+(j+1)*larghezzaCasella, sfondo.top+(i+1)*altezzaCasella);
+                            canvas.drawRect(r, paint);
                         }
 
                     }
                 }
             }
+            start = true;
         }
 
+    }
+    public void restart(){
+        start = false;
+        this.invalidate();
     }
 }
 
