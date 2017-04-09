@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 
 /**
@@ -16,6 +17,8 @@ public class Schacchiera extends View {
 
     private static int dimensione = 5;
     static boolean start = false;
+
+    static boolean[][] scacchieraDati= new boolean[dimensione][dimensione];
 
     public Schacchiera(Context context) {
         super(context);
@@ -31,6 +34,14 @@ public class Schacchiera extends View {
         //Mi definisco due variabili che identificano le dimensioni delle caselle
         int altezzaCasella = sfondo.height()/dimensione;
         int larghezzaCasella = sfondo.width()/dimensione;
+
+
+        //devo andare a cambiare i colori delle caselle toccate
+        if(start==true){
+
+        }
+
+
 
         //Adesso devo colorarmi le caselle, in particolare devo distinguere due casi, uno per l'inizializzazione, ovvero la
         //Prima colorazione della scacchiera che servirà anche a far ripartire il gioco, mentre un ulteriore metodo servirà a
@@ -71,11 +82,43 @@ public class Schacchiera extends View {
             start = true;
         }
 
+
     }
     public void restart(int dim){
         dimensione= dim;
+        startMatrice(dim);
         start = false;
         this.invalidate();
+    }
+    public boolean onTouchEvent (MotionEvent motionEvent){
+        int azione = motionEvent.getAction();
+    }
+
+    public void startMatrice(int dimensione){
+        for(int i = 0; i<=dimensione; i++){
+            if(i%2==0){
+                for(int j=0; j<=dimensione; j++){
+                    if(j%2 == 0){
+                        scacchieraDati[i][j]=true;
+                    }
+                    if (j%2 != 0) {
+                        scacchieraDati[i][j]=false;
+                    }
+
+                }
+            }
+            if(i%2 != 0){
+                for(int j=0; j<=dimensione; j++){
+                    if(j%2 == 0){
+                        scacchieraDati[i][j]=false;
+                    }
+                    if (j%2 != 0) {
+                        scacchieraDati[i][j]=true;
+                    }
+
+                }
+            }
+        }
     }
 }
 
