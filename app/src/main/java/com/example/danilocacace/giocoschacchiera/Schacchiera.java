@@ -36,7 +36,7 @@ public class Schacchiera extends View {
         //Prima colorazione della scacchiera che servirà anche a far ripartire il gioco, mentre un ulteriore metodo servirà a
         //colorarla durante la fase di gioco all'inversione dei colori
         if(start==false){
-            for(int i =0; i<=dimensione; i++){
+            for(int i = 0; i<=dimensione; i++){
                 if(i%2==0){
                     for(int j=0; j<=dimensione; j++){
                         if(j%2 == 0){
@@ -72,7 +72,8 @@ public class Schacchiera extends View {
         }
 
     }
-    public void restart(){
+    public void restart(int dim){
+        dimensione= dim;
         start = false;
         this.invalidate();
     }

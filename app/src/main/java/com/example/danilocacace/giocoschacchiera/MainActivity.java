@@ -2,12 +2,15 @@ package com.example.danilocacace.giocoschacchiera;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
     Button mPulsante;
     Schacchiera mScacchiera;
+    EditText mDimensione;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,6 +18,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mPulsante = (Button) findViewById(R.id.restart);
-        mScacchiera = (Schacchiera) findViewById(R.id.view);
+        mScacchiera = (Schacchiera) findViewById(R.id.scacchiera);
+        mDimensione = (EditText) findViewById(R.id.editDimensione);
+
+        mPulsante.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int dim = Integer.parseInt(mDimensione.getText().toString());
+                mScacchiera.restart(dim);
+            }
+        });
     }
 }
