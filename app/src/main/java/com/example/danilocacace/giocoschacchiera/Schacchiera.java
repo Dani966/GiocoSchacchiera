@@ -17,6 +17,10 @@ public class Schacchiera extends View {
 
     private static int dimensione = 5;
     static boolean start = false;
+    static int altezzaCasella;
+    static int larghezzaCasella;
+    static float x;
+    static float y;
 
     static boolean[][] scacchieraDati= new boolean[dimensione][dimensione];
 
@@ -32,8 +36,8 @@ public class Schacchiera extends View {
         Rect sfondo = canvas.getClipBounds();
 
         //Mi definisco due variabili che identificano le dimensioni delle caselle
-        int altezzaCasella = sfondo.height()/dimensione;
-        int larghezzaCasella = sfondo.width()/dimensione;
+        altezzaCasella = sfondo.height()/dimensione;
+        larghezzaCasella = sfondo.width()/dimensione;
 
 
         //devo andare a cambiare i colori delle caselle toccate
@@ -84,16 +88,13 @@ public class Schacchiera extends View {
 
 
     }
+
     public void restart(int dim){
         dimensione= dim;
         startMatrice(dim);
         start = false;
         this.invalidate();
     }
-    public boolean onTouchEvent (MotionEvent motionEvent){
-        int azione = motionEvent.getAction();
-    }
-
     public void startMatrice(int dimensione){
         for(int i = 0; i<=dimensione; i++){
             if(i%2==0){
@@ -120,5 +121,34 @@ public class Schacchiera extends View {
             }
         }
     }
+
+    public void invertMatrice(){
+        int X = (int)x;
+        int Y = (int)y;
+
+        int i = X/larghezzaCasella;
+        int j = Y/altezzaCasella;
+
+        for(int k=0; k<dimensione;k++){
+            scacchieraDati[i][k]= !scacchieraDati[i][k];
+        }
+        for(int k=0; k<dimensione;k++){
+            scacchieraDati[k][j]= !scacchieraDati[k][j];
+        }
+    }
+
+    public boolean onTouchEvent (MotionEvent motionEvent){
+        int azione = motionEvent.getAction();
+        if(azione == motionEvent.ACTION_UP){
+            x = motionEvent.getX();
+            y = motionEvent.getY();
+            invertMatrice();
+            this.invalidate();
+            return true;
+        }
+        return false;
+    }
+
+
 }
 
