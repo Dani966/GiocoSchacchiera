@@ -19,13 +19,11 @@ public class MainActivity extends AppCompatActivity {
 
         mPulsante = (Button) findViewById(R.id.restart);
         mScacchiera = (Schacchiera) findViewById(R.id.scacchiera);
-        mDimensione = (EditText) findViewById(R.id.editDimensione);
 
         mPulsante.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int dim = Integer.parseInt(mDimensione.getText().toString());
-                mScacchiera.restart(dim);
+                mScacchiera.restart();
             }
         });
     }
